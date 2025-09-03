@@ -1,7 +1,45 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
+interface VersePray {
+  verse?: string;
+  pray?: string;
+  date: string;
+}
 export default function Home() {
+  const [verseDuJour, setVerseDuJour] = useState<VersePray | null>(null);
+
+  useEffect(() => {
+    async function fetchVerse() {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/verseprays/");
+        const data: VersePray[] = await res.json();
+
+        if (!data || data.length === 0) return;
+
+        // Tri par date décroissante
+        const sorted = data.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+
+        const today = new Date().toISOString().split("T")[0];
+        const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
+
+        // Cherche le verset d'aujourd'hui, sinon hier
+        const verseToday =
+          sorted.find((v) => v.date.startsWith(today)) ||
+          sorted.find((v) => v.date.startsWith(yesterday)) ||
+          null;
+
+        setVerseDuJour(verseToday);
+      } catch (error) {
+        console.error("Erreur de récupération :", error);
+      }
+    }
+
+    fetchVerse();
+  }, []);
   return (
     <main className="relative w-full h-screen text-white overflow-hidden">
       <div className="absolute inset-0">
@@ -20,9 +58,20 @@ export default function Home() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, aliquam. <br />
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, dolorum.
         </h2>
-        <p className="text-lg md:text-2xl mb-6">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, quo.
-        </p>
+         {verseDuJour ? (
+          <div className="bg-black/50 p-6 rounded-lg shadow-lg animate-fadeIn">
+            <p className="text-xl md:text-2xl mb-4 font-semibold">
+              Verset du jour :
+            </p>
+            <p className="text-lg md:text-xl mb-6">{verseDuJour.verse}</p>
+            <p className="text-xl md:text-2xl mb-4 font-semibold">Prière :</p>
+            <p className="text-lg md:text-xl">{verseDuJour.pray}</p>
+          </div>
+        ) : (
+          <p className="text-lg md:text-xl bg-black/50 p-4 rounded-lg">
+            Aucun verset disponible
+          </p>
+        )}
         <Link
           href="/about"
           className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-full font-semibold transition"

@@ -23,9 +23,9 @@ export default async function Page() {
   const members = await getMembers();
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-28 px-6">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-12 tracking-tight">
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 pt-32 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-4 tracking-tight">
           Nos Responsables
         </h1>
         <MembersList members={members} />

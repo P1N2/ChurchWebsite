@@ -1,6 +1,7 @@
-'use client';
+"use client";
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Member = {
   id: number;
@@ -23,7 +24,7 @@ function Bio({ bio }: { bio: string }) {
         {isLong && (
           <button
             onClick={() => setExpanded(!expanded)}
-            className="text-blue-600 hover:underline ml-1"
+            className="text-yellow-600 hover:underline ml-1 font-medium"
           >
             {expanded ? "Voir moins" : "Voir plus"}
           </button>
@@ -35,13 +36,16 @@ function Bio({ bio }: { bio: string }) {
 
 export default function MembersList({ members }: { members: Member[] }) {
   return (
-    <div className="space-y-8">
-      {members.map((member) => (
-        <div
+    <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {members.map((member, index) => (
+        <motion.div
           key={member.id}
-          className="flex flex-col md:flex-row bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+          className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden flex flex-col"
         >
-          <div className="relative w-full md:w-1/3 h-64 md:h-auto">
+          <div className="relative w-full h-64">
             <Image
               src={member.image || "/images/default-avatar.jpg"}
               alt={`${member.prenom} ${member.nom}`}
@@ -49,14 +53,14 @@ export default function MembersList({ members }: { members: Member[] }) {
               className="object-cover"
             />
           </div>
-          <div className="p-6 flex flex-col justify-center md:w-2/3">
-            <h2 className="text-2xl font-semibold text-gray-800">
+          <div className="p-6 flex flex-col flex-grow">
+            <h2 className="text-xl font-bold text-gray-900">
               {member.prenom} {member.nom}
             </h2>
-            <p className="text-yellow-600 font-medium mb-2">{member.role}</p>
+            <p className="text-yellow-600 font-semibold mb-3">{member.role}</p>
             <Bio bio={member.bio} />
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

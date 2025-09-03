@@ -1,8 +1,8 @@
 from rest_framework import viewsets
-from .models import Ministry, Member, Event, Sermon, VersePray, Contact, DonationInfo, ThemeYear
+from .models import Ministry, Member, Event, Sermon, VersePray,ThemeYear
 from .serializers import (
     MinistrySerializer, MemberSerializer, EventSerializer, SermonSerializer, 
-    VersePraySerializer, ContactSerializer, DonationInfoSerializer, ThemeYearSerializer
+    VersePraySerializer, ThemeYearSerializer
 )
 
 class MinistryViewSet(viewsets.ModelViewSet):
@@ -24,15 +24,6 @@ class SermonViewSet(viewsets.ModelViewSet):
 class VersePrayViewSet(viewsets.ModelViewSet):
     queryset = VersePray.objects.all()
     serializer_class = VersePraySerializer
-
-class ContactViewSet(viewsets.ModelViewSet):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
-
-class DonationInfoViewSet(viewsets.ModelViewSet):
-    queryset = DonationInfo.objects.all()
-    serializer_class = DonationInfoSerializer
-
 class ThemeYearViewSet(viewsets.ModelViewSet):
     queryset = ThemeYear.objects.all()
     serializer_class = ThemeYearSerializer

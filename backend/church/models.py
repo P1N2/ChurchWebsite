@@ -32,6 +32,7 @@ class Event(models.Model):
 class Sermon(models.Model):
     titre = models.CharField(max_length=200)
     predicateur = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
     date = models.DateField()
     video_url = models.URLField(blank=True, null=True)
     audio_url = models.URLField(blank=True, null=True)
@@ -47,28 +48,10 @@ class VersePray(models.Model):
 
     def __str__(self):
         return f"Verse du {self.date}"
-
-class Contact(models.Model):
-    nom= models.CharField(max_length=100)
-    email= models.EmailField()
-    sujet = models.TextField(blank=True)
-    message = models.TextField(blank=True)
-    date_envoi = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Message de {self.nom} - {self.sujet}"
-
-class DonationInfo(models.Model):
-    methode = models.CharField(max_length=100)
-    details = models.TextField(blank=True)
-    date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.methode
-
 class ThemeYear(models.Model):
     annee = models.PositiveIntegerField(unique=True)
     theme = models.CharField(max_length=255)
+    verset= models.CharField(max_length=255, blank=True, null=True) 
 
     def __str__(self):
         return f"{self.annee} : {self.theme}"
