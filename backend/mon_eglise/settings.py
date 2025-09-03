@@ -83,11 +83,11 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eglise_db',         # Remplace par le nom de ta base MySQL
-        'USER': 'root',         # Ton utilisateur MySQL
-        'PASSWORD': '',    # Ton mot de passe MySQL
-        'HOST': 'localhost',               # Ou l’adresse IP si MySQL est distant
-        'PORT': '3306',                    # Port MySQL par défaut
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_HOST'),
+        'PORT': os.environ.get('MYSQL_PORT', 3306),
     }
 }
 
