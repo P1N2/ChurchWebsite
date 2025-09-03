@@ -48,9 +48,10 @@ export default function AboutPage() {
   useEffect(() => {
     async function fetchTheme() {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/themeyears/");
+         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/themeyears/`);
         const data: Theme[] = await res.json();
-        const currentYear = new Date().getFullYear();
+    
+    const currentYear = new Date().getFullYear();
         const currentTheme = data.find(t => t.annee === currentYear) || null;
         setTheme(currentTheme);
       } catch (error) {
@@ -60,7 +61,6 @@ export default function AboutPage() {
     }
     fetchTheme();
   }, []);
-
   return (
     <main className="bg-white text-gray-800">
       {/* Hero Section */}
@@ -81,13 +81,13 @@ export default function AboutPage() {
 
           {/* Thème de l'année */}
           <p className="text-3xl md:text-3xl lg:text-3xl font-semibold drop-shadow-lg text-white text-center">
-            THÈME DE L'ANNÉE {new Date().getFullYear()} : {theme ? theme.theme : "Aucun thème disponible"}
+            THÈME DE L&#39;ANNÉE {new Date().getFullYear()} : {theme ? theme.theme : "Aucun thème disponible"}
           </p>
 
           {/* Verset */}
           {theme?.verset && (
             <p className="text-lg md:text-xl italic text-yellow-100 text-center max-w-2xl">
-              "{theme.verset}"
+              &quot;{theme.verset}&quot;
             </p>
           )}
         </div>

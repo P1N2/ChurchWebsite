@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Remplace cette URL par celle de ton backend si besoin
-const API_URL = "http://localhost:8000/api/ministries/";
+
 
 
 interface Ministry {
@@ -13,7 +13,7 @@ interface Ministry {
 
 
 async function getMinistries(): Promise<Ministry[]> {
-  const res = await fetch(API_URL, { cache: "no-store" });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ministries/`, { cache: "no-store" });
   if (!res.ok) throw new Error("Erreur lors du chargement des ministères");
   return res.json();
 }

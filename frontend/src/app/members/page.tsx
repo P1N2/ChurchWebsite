@@ -10,7 +10,7 @@ type Member = {
 };
 
 async function getMembers(): Promise<Member[]> {
-  const res = await fetch("http://localhost:8000/api/members/", {
+   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/members/`, {
     cache: "no-store",
   });
   if (!res.ok) {
