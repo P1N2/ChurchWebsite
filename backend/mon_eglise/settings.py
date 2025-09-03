@@ -79,7 +79,7 @@ TEMPLATES = [
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -90,6 +90,7 @@ DATABASES = {
         'PORT': os.environ.get('MYSQL_PORT', 3306),
     }
 }
+
 
 
 # Password validation
