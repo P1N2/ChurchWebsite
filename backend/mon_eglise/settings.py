@@ -75,7 +75,22 @@ TEMPLATES = [
 ]
 
 #WSGI_APPLICATION = 'mon_eglise.wsgi.application'
+import os
+import dj_database_url
 
+DATABASE_URL = os.environ.get('MYSQL_PUBLIC_URL')
+
+if not DATABASE_URL:
+    # Pour le débogage en local si la variable n'est pas configurée
+    print("Warning: MYSQL_PUBLIC_URL is not set. Using hardcoded URL.")
+    DATABASE_URL = 'mysql://root:fLLGHuhjoFiGeooRXdusaYbAGMMNFwWJ@mainline.proxy.rlwy.net:37910/railway'
+
+# Ajouter une impression pour voir l'URL
+print(f"Connecting to database with URL: {DATABASE_URL}")
+
+DATABASES = {
+    'default': dj_database_url.parse(DATABASE_URL)
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
