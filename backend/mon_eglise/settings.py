@@ -79,13 +79,6 @@ TEMPLATES = [
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-import os
-import dj_database_url
-DATABASE_URL = os.environ.get('MYSQL_PUBLIC_URL', 'mysql://root:fLLGHuhjoFiGeooRXdusaYbAGMMNFwWJ@mainline.proxy.rlwy.net:37910/railway')
-
-DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL)
-}
 # DATABASES = {
 #     'default': {
 #         'NAME': os.environ.get('mysql://root:fLLGHuhjoFiGeooRXdusaYbAGMMNFwWJ@mainline.proxy.rlwy.net:37910/railway'),
