@@ -14,5 +14,5 @@ router.register(r'verseprays', VersePrayViewSet)
 router.register(r'themeyears', ThemeYearViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)), # Change this line to an empty string
 ]
