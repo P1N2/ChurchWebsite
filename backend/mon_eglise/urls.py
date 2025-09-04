@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('church.urls')),  # Ajoute ça pour l’API
+    path('api/', include('church.urls')),  # Change this line
 ]
 
 if settings.DEBUG:
