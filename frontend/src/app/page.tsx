@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchVerse() {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/verseprays/");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/verseprays/`);
         const data: VersePray[] = await res.json();
 
         if (!data || data.length === 0) return;
