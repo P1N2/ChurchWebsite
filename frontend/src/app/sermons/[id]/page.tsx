@@ -22,7 +22,7 @@ export default function SermonDetailPage() {
   useEffect(() => {
     async function fetchSermon() {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sermons/${id}/`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sermons/${id}/`);
         if (!res.ok) throw new Error("Erreur lors du chargement");
         const data = await res.json();
         setSermon(data);
