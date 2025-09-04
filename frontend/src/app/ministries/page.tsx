@@ -13,7 +13,7 @@ interface Ministry {
 
 
 async function getMinistries(): Promise<Ministry[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ministries/`, { cache: "no-store" });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ministries/`, { cache: "no-store" });
   if (!res.ok) throw new Error("Erreur lors du chargement des ministères");
   return res.json();
 }

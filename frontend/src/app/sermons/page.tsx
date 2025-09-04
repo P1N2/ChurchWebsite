@@ -31,7 +31,7 @@ export default function SermonPage() {
   useEffect(() => {
     async function fetchSermons() {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sermons/`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sermons/`);
         const data = await res.json();
 
         // Tri par date décroissante

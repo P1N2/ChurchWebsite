@@ -15,5 +15,4 @@ router.register(r'themeyears', ThemeYearViewSet)
 
 urlpatterns = [
     path('', include(router.urls)), # Change this line to an empty string
-    
 ]

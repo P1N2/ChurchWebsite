@@ -48,7 +48,7 @@ export default function AboutPage() {
   useEffect(() => {
     async function fetchTheme() {
       try {
-         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/themeyears/`);
+         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/themeyears/`);
         const data: Theme[] = await res.json();
     
     const currentYear = new Date().getFullYear();

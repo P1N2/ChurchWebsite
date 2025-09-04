@@ -98,7 +98,7 @@ export default function EventsPage() {
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/events/", { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/events/`, { cache: "no-store" });
         const data = await res.json();
         setEvents(data);
       } catch (err) {
