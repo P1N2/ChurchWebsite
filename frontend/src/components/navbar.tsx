@@ -142,7 +142,7 @@ export default function Navbar() {
       {/* Mobile Menu joli */}
       <div
         className={`fixed top-4 right-4 w-72 max-h-[90vh] bg-white rounded-2xl shadow-2xl z-50 flex flex-col p-6 transition-transform duration-300 md:hidden ${
-          mobileMenu ? "translate-x-0" : "translate-x-full"
+          mobileMenu ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
       >
         {/* Header menu avec croix */}
