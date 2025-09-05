@@ -101,13 +101,13 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenu && (
-          <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setMobileMenu(false)} />
-        )}
-        <ul
-          className={`fixed top-0 right-0 h-full w-64 bg-white/95 shadow-lg z-50 flex flex-col gap-6 pt-24 px-8 text-gray-700 font-medium transition-transform duration-300 md:hidden ${
-            mobileMenu ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
+         <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setMobileMenu(false)} />
+)}
+<ul
+  className={`fixed top-0 right-0 h-full w-64 bg-white z-50 flex flex-col gap-6 pt-24 px-8 text-black font-medium transition-transform duration-300 md:hidden ${
+    mobileMenu ? "translate-x-0" : "translate-x-full"
+  }`}
+>
           <li>
             <Link href="/" className="hover:text-yellow-600 transition-colors" onClick={() => setMobileMenu(false)}>
               Accueil
