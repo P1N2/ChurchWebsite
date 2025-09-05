@@ -10,18 +10,19 @@ export default function Navbar() {
   return (
     <header className="w-full flex justify-center fixed top-0 left-0 z-50 pointer-events-none">
       <nav
-        className="pointer-events-auto mt-6 rounded-2xl shadow-xl border border-gray-200 flex justify-between items-center px-6 py-3 max-w-5xl w-[95vw] mx-auto bg-white/95"
+        className="pointer-events-auto mt-6 rounded-2xl shadow-xl border border-yellow-100 flex justify-between items-center px-6 py-3 max-w-5xl w-[95vw] mx-auto"
         style={{
+          background: 'linear-gradient(90deg, #fffbe6 0%, #fff 60%, #ffe9b3 100%)',
           backdropFilter: 'blur(8px)',
         }}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl font-extrabold text-gray-800 tracking-widest">EEB RPCF</span>
+          <span className="text-2xl font-extrabold text-gray-700 tracking-widest drop-shadow">EEB RPCF</span>
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 items-center font-medium text-gray-800">
+  <ul className="hidden md:flex gap-8 items-center font-medium text-gray-700">
           <li>
             <Link href="/" className="hover:text-yellow-600 transition-colors px-2 py-1 rounded">
               Accueil
@@ -35,7 +36,7 @@ export default function Navbar() {
               L’Église <span>▾</span>
             </button>
             <ul
-              className={`absolute top-full left-0 mt-2 w-44 bg-white/95 rounded-md shadow-lg overflow-hidden transition-all duration-300 border border-gray-200 z-20 ${
+              className={`absolute top-full left-0 mt-2 w-44 bg-white/95 rounded-md shadow-lg overflow-hidden transition-all duration-300 border border-yellow-100 z-20 ${
                 openMenu === "church" ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
               }`}
             >
@@ -64,7 +65,7 @@ export default function Navbar() {
               Ressources <span>▾</span>
             </button>
             <ul
-              className={`absolute top-full left-0 mt-2 w-52 bg-white/95 rounded-md shadow-lg overflow-hidden transition-all duration-300 border border-gray-200 z-20 ${
+              className={`absolute top-full left-0 mt-2 w-52 bg-white/95 rounded-md shadow-lg overflow-hidden transition-all duration-300 border border-yellow-100 z-20 ${
                 openMenu === "resources" ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
               }`}
             >
@@ -87,21 +88,15 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Mobile Menu Toggle (Hamburger / Cross) */}
+        {/* Hamburger for mobile */}
         <button
-          className="md:hidden p-2 rounded-lg border-2 border-gray-300 text-gray-700 transition-all duration-300"
+          className="md:hidden flex flex-col gap-1.5 p-2 rounded hover:bg-yellow-100 border border-yellow-100"
           onClick={() => setMobileMenu(!mobileMenu)}
-          aria-label="Toggle mobile menu"
+          aria-label="Ouvrir le menu"
         >
-          {mobileMenu ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          )}
+          <span className="block w-6 h-0.5 bg-yellow-700"></span>
+          <span className="block w-6 h-0.5 bg-yellow-700"></span>
+          <span className="block w-6 h-0.5 bg-yellow-700"></span>
         </button>
 
         {/* Mobile Menu */}
@@ -109,7 +104,7 @@ export default function Navbar() {
           <div className="fixed inset-0 bg-black/40 z-40" onClick={() => setMobileMenu(false)} />
         )}
         <ul
-          className={`fixed top-0 right-0 h-full w-64 bg-white/95 rounded-l-2xl shadow-lg z-50 flex flex-col gap-6 pt-24 px-8 text-gray-700 font-medium transition-transform duration-300 md:hidden ${
+          className={`fixed top-0 right-0 h-full w-64 bg-white/95 shadow-lg z-50 flex flex-col gap-6 pt-24 px-8 text-gray-700 font-medium transition-transform duration-300 md:hidden ${
             mobileMenu ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -129,7 +124,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/members" className="hover:text-yellow-600 transition-colors" onClick={() => setMobileMenu(false)}>
+            <Link href="/responsables" className="hover:text-yellow-600 transition-colors" onClick={() => setMobileMenu(false)}>
               Responsables
             </Link>
           </li>
