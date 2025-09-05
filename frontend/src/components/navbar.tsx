@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { X } from "lucide-react"; // Icône croix
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<"church" | "resources" | null>(null);
@@ -121,7 +122,7 @@ export default function Navbar() {
         {/* Hamburger for mobile */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2 rounded hover:bg-yellow-100 border border-yellow-100"
-          onClick={() => setMobileMenu(!mobileMenu)}
+          onClick={() => setMobileMenu(true)}
           aria-label="Ouvrir le menu"
         >
           <span className="block w-6 h-0.5 bg-yellow-700"></span>
@@ -130,7 +131,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Overlay mobile */}
+      {/* Overlay */}
       {mobileMenu && (
         <div
           className="fixed inset-0 bg-black/40 z-40"
@@ -138,76 +139,91 @@ export default function Navbar() {
         />
       )}
 
-      {/* Mobile Menu */}
-      <ul
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 flex flex-col gap-6 pt-24 px-8 text-gray-800 font-medium transition-transform duration-300 md:hidden ${
+      {/* Mobile Menu joli */}
+      <div
+        className={`fixed top-4 right-4 w-72 max-h-[90vh] bg-white rounded-2xl shadow-2xl z-50 flex flex-col p-6 transition-transform duration-300 md:hidden ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <li>
-          <Link
-            href="/"
-            className="hover:text-yellow-600 transition-colors"
+        {/* Header menu avec croix */}
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-lg font-bold text-gray-800">Menu</h3>
+          <button
             onClick={() => setMobileMenu(false)}
+            className="p-2 rounded-full hover:bg-gray-100 transition"
+            aria-label="Fermer le menu"
           >
-            Accueil
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/about"
-            className="hover:text-yellow-600 transition-colors"
-            onClick={() => setMobileMenu(false)}
-          >
-            À propos
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/ministries"
-            className="hover:text-yellow-600 transition-colors"
-            onClick={() => setMobileMenu(false)}
-          >
-            Ministères
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/responsables"
-            className="hover:text-yellow-600 transition-colors"
-            onClick={() => setMobileMenu(false)}
-          >
-            Responsables
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/events"
-            className="hover:text-yellow-600 transition-colors"
-            onClick={() => setMobileMenu(false)}
-          >
-            Événements
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/sermons"
-            className="hover:text-yellow-600 transition-colors"
-            onClick={() => setMobileMenu(false)}
-          >
-            Prédications / Médiathèque
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/contact"
-            className="hover:text-yellow-600 transition-colors"
-            onClick={() => setMobileMenu(false)}
-          >
-            Contact & Dons
-          </Link>
-        </li>
-      </ul>
+            <X className="w-6 h-6 text-gray-600" />
+          </button>
+        </div>
+
+        {/* Liens */}
+        <ul className="flex flex-col gap-4 text-gray-700 font-medium">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              Accueil
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              À propos
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/ministries"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              Ministères
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/responsables"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              Responsables
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/events"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              Événements
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/sermons"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              Prédications / Médiathèque
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="hover:text-yellow-600 transition-colors"
+              onClick={() => setMobileMenu(false)}
+            >
+              Contact & Dons
+            </Link>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }
