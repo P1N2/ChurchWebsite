@@ -188,7 +188,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/responsables"
+              href="/members"
               className="hover:text-yellow-600 transition-colors"
               onClick={() => setMobileMenu(false)}
             >
